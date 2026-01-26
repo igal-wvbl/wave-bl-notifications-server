@@ -9,8 +9,6 @@ export class BucNotificationsController {
 
     }
 
-
-
     @Post()
     create(@Body() createBucNotificationDto: CreateBucNotificationDto) {
         return this.bucNotificationsService.create(createBucNotificationDto);

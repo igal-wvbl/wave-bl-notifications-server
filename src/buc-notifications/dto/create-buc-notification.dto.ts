@@ -1,1 +1,3 @@
-export class CreateBucNotificationDto {}
+export class CreateBucNotificationDto {
+
+}
