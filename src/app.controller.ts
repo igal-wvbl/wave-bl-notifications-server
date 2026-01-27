@@ -16,7 +16,7 @@ export class AppController {
   public async incomingBusinessCard(@Body() dto: IncomingBusinessUnitRequestDto): Promise<string> {
     console.log('incomingBusinessCard called');
 
-    const s = JSON.stringify(dto);
+    const s = JSON.stringify(dto, null, 4);
     console.log(s);
     return s;
   }
