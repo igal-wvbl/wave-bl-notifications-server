@@ -16,6 +16,13 @@ export class CalculatorService {
     return firstNumber - secondNumber;
   }
 
+  multiply(firstOperand: string, secondOperand: string): number {
+    const firstNumber = this.toNumber(firstOperand);
+    const secondNumber = this.toNumber(secondOperand);
+
+    return firstNumber * secondNumber;
+  }
+
   private toNumber(value: string): number {
     const parsedValue = Number(value);
 

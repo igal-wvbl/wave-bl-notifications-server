@@ -21,4 +21,8 @@ describe('CalculatorController', () => {
   it('subtracts two numbers', () => {
     expect(controller.subtract('8', '2')).toBe(6);
   });
+
+  it('multiplies two numbers', () => {
+    expect(controller.multiply('8', '2')).toBe(16);
+  });
 });

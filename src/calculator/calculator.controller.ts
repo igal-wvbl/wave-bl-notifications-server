@@ -20,4 +20,12 @@ export class CalculatorController {
   ): number {
     return this.calculatorService.subtract(firstOperand, secondOperand);
   }
+
+  @Get('multiply/:firstOperand/:secondOperand')
+  multiply(
+    @Param('firstOperand') firstOperand: string,
+    @Param('secondOperand') secondOperand: string,
+  ): number {
+    return this.calculatorService.multiply(firstOperand, secondOperand);
+  }
 }
