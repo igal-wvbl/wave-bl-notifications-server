@@ -1,5 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { CalculatorService } from './calculator.service';
+import { CalculatorOperandsDto } from './dto/calculator-operands.dto';
+import { DivideOperandsDto } from './dto/divide-operands.dto';
 
 @Controller('calculator')
 export class CalculatorController {
@@ -10,7 +12,11 @@ export class CalculatorController {
     @Param('firstOperand') firstOperand: string,
     @Param('secondOperand') secondOperand: string,
   ): number {
-    return this.calculatorService.add(firstOperand, secondOperand);
+    const operands = CalculatorOperandsDto.fromRouteParams(
+      firstOperand,
+      secondOperand,
+    );
+    return this.calculatorService.add(operands);
   }
 
   @Get('subtract/:firstOperand/:secondOperand')
@@ -18,7 +24,11 @@ export class CalculatorController {
     @Param('firstOperand') firstOperand: string,
     @Param('secondOperand') secondOperand: string,
   ): number {
-    return this.calculatorService.subtract(firstOperand, secondOperand);
+    const operands = CalculatorOperandsDto.fromRouteParams(
+      firstOperand,
+      secondOperand,
+    );
+    return this.calculatorService.subtract(operands);
   }
 
   @Get('multiply/:firstOperand/:secondOperand')
@@ -26,6 +36,34 @@ export class CalculatorController {
     @Param('firstOperand') firstOperand: string,
     @Param('secondOperand') secondOperand: string,
   ): number {
-    return this.calculatorService.multiply(firstOperand, secondOperand);
+    const operands = CalculatorOperandsDto.fromRouteParams(
+      firstOperand,
+      secondOperand,
+    );
+    return this.calculatorService.multiply(operands);
+  }
+
+  @Get('divide/:firstOperand/:secondOperand')
+  divide(
+    @Param('firstOperand') firstOperand: string,
+    @Param('secondOperand') secondOperand: string,
+  ): number {
+    const operands = DivideOperandsDto.fromRouteParams(
+      firstOperand,
+      secondOperand,
+    );
+    return this.calculatorService.divide(operands);
+  }
+
+  @Get('power/:firstOperand/:secondOperand')
+  power(
+    @Param('firstOperand') firstOperand: string,
+    @Param('secondOperand') secondOperand: string,
+  ): number {
+    const operands = CalculatorOperandsDto.fromRouteParams(
+      firstOperand,
+      secondOperand,
+    );
+    return this.calculatorService.power(operands);
   }
 }
