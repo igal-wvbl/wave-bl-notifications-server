@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CalculatorOperandsDto } from './dto/calculator-operands.dto';
 import { DivideOperandsDto } from './dto/divide-operands.dto';
+import { SingleOperandDto } from './dto/single-operand.dto';
 
 @Injectable()
 export class CalculatorService {
@@ -22,5 +23,9 @@ export class CalculatorService {
 
   power(operands: CalculatorOperandsDto): number {
     return operands.firstOperand ** operands.secondOperand;
+  }
+
+  powerByTwo(operand: SingleOperandDto): number {
+    return operand.firstOperand ** 2;
   }
 }
