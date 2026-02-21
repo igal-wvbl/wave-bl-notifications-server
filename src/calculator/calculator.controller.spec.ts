@@ -35,11 +35,19 @@ describe('CalculatorController', () => {
     expect(controller.power('2', '3')).toBe(8);
   });
 
+  it('raises a number to the power of two', () => {
+    expect(controller.powerByTwo('9')).toBe(81);
+  });
+
   it('throws when receiving invalid numbers', () => {
     expect(() => controller.add('abc', '2')).toThrow(BadRequestException);
   });
 
   it('throws when dividing by zero', () => {
     expect(() => controller.divide('10', '0')).toThrow(BadRequestException);
+  });
+
+  it('throws when receiving invalid single operand number', () => {
+    expect(() => controller.powerByTwo('abc')).toThrow(BadRequestException);
   });
 });

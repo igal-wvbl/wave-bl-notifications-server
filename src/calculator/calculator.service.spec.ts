@@ -2,6 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { CalculatorService } from './calculator.service';
 import { CalculatorOperandsDto } from './dto/calculator-operands.dto';
 import { DivideOperandsDto } from './dto/divide-operands.dto';
+import { SingleOperandDto } from './dto/single-operand.dto';
 
 describe('CalculatorService', () => {
   let service: CalculatorService;
@@ -30,6 +31,10 @@ describe('CalculatorService', () => {
     expect(service.power(new CalculatorOperandsDto(2, 3))).toBe(8);
   });
 
+  it('raises a number to the power of two', () => {
+    expect(service.powerByTwo(new SingleOperandDto(7))).toBe(49);
+  });
+
   it('throws when creating dto with invalid numbers', () => {
     expect(() => CalculatorOperandsDto.fromRouteParams('abc', '5')).toThrow(
       BadRequestException,
@@ -38,6 +43,12 @@ describe('CalculatorService', () => {
 
   it('throws when creating divide dto with zero divisor', () => {
     expect(() => DivideOperandsDto.fromRouteParams('10', '0')).toThrow(
+      BadRequestException,
+    );
+  });
+
+  it('throws when creating single operand dto with invalid number', () => {
+    expect(() => SingleOperandDto.fromRouteParams('abc')).toThrow(
       BadRequestException,
     );
   });

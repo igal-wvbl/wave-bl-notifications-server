@@ -2,6 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { CalculatorService } from './calculator.service';
 import { CalculatorOperandsDto } from './dto/calculator-operands.dto';
 import { DivideOperandsDto } from './dto/divide-operands.dto';
+import { SingleOperandDto } from './dto/single-operand.dto';
 
 @Controller('calculator')
 export class CalculatorController {
@@ -65,5 +66,11 @@ export class CalculatorController {
       secondOperand,
     );
     return this.calculatorService.power(operands);
+  }
+
+  @Get('power_by_two/:firstOperand')
+  powerByTwo(@Param('firstOperand') firstOperand: string): number {
+    const operand = SingleOperandDto.fromRouteParams(firstOperand);
+    return this.calculatorService.powerByTwo(operand);
   }
 }
